@@ -1,4 +1,4 @@
 #!/bin/bash
 
-clearPort
+#clearPort
 python3 manage.py runserver

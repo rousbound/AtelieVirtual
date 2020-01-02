@@ -1,2 +1,5 @@
 *.pyc
 venv/*
+projects/__pycache__/*
+personal_portfolio/__pycache__/*
+
