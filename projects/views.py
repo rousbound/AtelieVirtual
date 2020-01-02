@@ -14,3 +14,10 @@ def project_detail(request, pk):
         'project': project
     }
     return render(request, 'project_detail.html', context)
+
+def project_detail_bus(request):
+    project = Project.objects.get(title = 'CataÔnibus')
+    context = {
+        'project': project
+    }
+    return render(request, 'project_detail_bus.html', context)
