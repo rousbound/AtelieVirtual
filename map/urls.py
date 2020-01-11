@@ -3,5 +3,4 @@ from . import views
 
 urlpatterns = [
     path("", views.map, name="map"),
-    path("test/", views.getBus, name="test"),
 ]
