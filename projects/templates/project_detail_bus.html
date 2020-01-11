@@ -17,8 +17,6 @@
         <p>{{ project.technology }}</p>
         <h5>Link to github:</h5>
         <p><a href = {{project.link}}>{{ project.link }}</a></p>
-        <h5>Link to WebApp:</h5>
-        <p><a href ="{% url 'map' %}"> GOTO </a></p>
     </div>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 
@@ -30,8 +28,15 @@
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 
-      <input id="data" size="60">
-      <button id="btn">Get Bus Line</button>
+      <style> #myRow{
+            margin: 0 auto;
+            padding: 5px;
+          }
+      </style>
+      <div class="row" id="myRow">
+        <input id="data" size="60">
+        <button id="btn">Get Bus Line</button>
+      </div>
       <div id="mapid"></div>
 
     <script>
