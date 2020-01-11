@@ -20,6 +20,56 @@
         <h5>Link to WebApp:</h5>
         <p><a href ="{% url 'map' %}"> GOTO </a></p>
     </div>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
+    <style>
+
+        #mapid { width: 1100px; height: 800px; }
+
+    </style>
+
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+      <input id="data" size="60">
+      <button id="btn">Get Bus Line</button>
+      <div id="mapid"></div>
+
+    <script>
+
+
+    var mymap = L.map('mapid').setView([-22.94, -43.18], 13);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mymap);
+5
+var data = {{buses|safe}};
+console.log(typeof(data));
+var layerGroup = L.layerGroup().addTo(mymap);
+
+function clicked(){
+
+  layerGroup.clearLayers();
+  var input_value = document.getElementById('data').value;
+  for(i=0; i < data.length; i++){
+    var name = parseInt(data[i][0]);
+      if (name === parseInt(input_value)){
+        console.log(name)
+        let lat  = parseFloat(data[i][1]);
+        let lon  = parseFloat(data[i][2]);
+        console.log(lat,lon);
+        console.log(typeof(lat));
+        L.marker([lat,lon]).addTo(layerGroup)
+    }
+  };
+}
+
+document.getElementById('btn').addEventListener('click', clicked);;
+
+
+    </script>
+
+
 </div>
 
 
