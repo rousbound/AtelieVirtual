@@ -11,15 +11,30 @@ function clicked(){
   layerGroup.clearLayers();
   var input_value = document.getElementById('data').value;
   for(i=0; i < busData.length; i++){
-    var name = parseInt(busData[i][0]);
-      if (name === parseInt(input_value)){
-        let lat  = parseFloat(busData[i][1]);
-        let lon  = parseFloat(busData[i][2]);
-        L.marker([lat,lon]).addTo(layerGroup)
+
+    LINHA = busData[i][0] 
+    LATITUDE = busData[i][1] 
+    LONGITUDE = busData[i][2] 
+    DATA = busData[i][3].split(' ')[0];
+    HORA = busData[i][3].split(' ')[1];
+    VELOCIDADE = busData[i][4]
+
+    var LINHA = parseInt(LINHA);
+    if (LINHA === parseInt(input_value)){
+        let lat  = parseFloat(LATITUDE);
+        let lon  = parseFloat(LONGITUDE);
+        console.log(DATA,HORA,VELOCIDADE);
+        dataVel = `<h5>Linha: ${LINHA}</h5><h5>Data: ${DATA}</h5><h5>Hora: ${HORA}</h5><h5>Velocidade: ${VELOCIDADE}</h5>`
+        L.marker([lat,lon]).bindPopup(dataVel).addTo(layerGroup);
     }
   };
 }
 
+function centerMe(){
+  mymap.setView([-22.94, -43.18], 13);
+};
+
 document.getElementById('btn').addEventListener('click', clicked);;
+document.getElementById('homeBtn').addEventListener('click', centerMe);;
 
 

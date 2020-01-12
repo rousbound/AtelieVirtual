@@ -3,7 +3,6 @@ let scl = 100;
 let food;
 
 window.addEventListener("keydown", function(e) {
-    // space and arrow keys
     if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
         e.preventDefault();
     }
@@ -11,7 +10,7 @@ window.addEventListener("keydown", function(e) {
 
 function setup() {
   var myCanvas = createCanvas(scl*10, scl*10);
-  myCanvas.parent("myContainer")
+  myCanvas.parent("snakeBox")
   s = new Snake();
   frameRate(10);
   pickLocation();
@@ -24,9 +23,6 @@ function pickLocation() {
   food.mult(scl);
 }
 
-function mousePressed() {
-  s.total++;
-}
 
 function draw() {
   background(51);
@@ -36,7 +32,7 @@ function draw() {
   s.death();
   s.update();
   s.show();
-  fill(255, 0, 100);
+  fill(0, 255, 0);
   rect(food.x, food.y, scl, scl);
 }
 

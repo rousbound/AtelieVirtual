@@ -4,7 +4,7 @@
 
 {% block page_content %}
 <h1>{{ project.title }}</h1>
-<div class="row" id='myContainer'>
+<div class="row" >
     <div class="col-md-8">
         <img src="{% static project.image %}" alt="" width="80%">
     </div>
@@ -16,11 +16,15 @@
         <p>{{ project.technology }}</p>
         <h5>Link to github:</h5>
         <p><a href = {{project.link}}>{{ project.link }}</a></p>
-    <script type="text/javascript"
-src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.min.js"></script>
+    </div>
+    <style>#myRow{margin: 0 auto; border: 1px solid black; padding:3px;}</style>
+    <div id="snakeBox">
+      <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.min.js"></script>
 
-    <script type="text/javascript"
-src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/addons/p5.sound.min.js"></script>
-    <script type="text/javascript" src="{% static "snake.js" %}"></script>
-    <script type="text/javascript" src="{% static "sketch.js" %}"></script>
+      <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/addons/p5.sound.min.js"></script>
+      <script type="text/javascript" src="{% static "snake.js" %}"></script>
+      <script type="text/javascript" src="{% static "sketch.js" %}"></script>
+  </div>
 {% endblock %}

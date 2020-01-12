@@ -17,9 +17,11 @@ while True:
           LATITUDE = bus[3] 
           LONGITUDE = bus[4] 
           VELOCIDADE = bus[5] 
-          output += str(LINHA) + "," +\
-                    str(LATITUDE) + "," +\
-                    str(LONGITUDE) + "\n"
+          output += str(LINHA)       +  ","  +\
+                    str(LATITUDE)    +  ","  +\
+                    str(LONGITUDE)   +  ","  +\
+                    str(DATAHORA)    +  ","  +\
+                    str(VELOCIDADE)  +  "\n"
       return output
               
 

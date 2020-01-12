@@ -16,6 +16,20 @@ def project_detail(request, pk):
     }
     return render(request, 'project_detail.html', context)
 
+def project_detail_escola(request):
+    project = Project.objects.get(title = "EscolaVirtual")
+    context = {
+        'project': project
+    }
+    return render(request, 'project_detail_escola.html', context)
+
+def project_detail_carioca(request):
+    project = Project.objects.get(title="CariocaScript")
+    context = {
+        'project': project
+    }
+    return render(request, 'project_detail_carioca.html', context)
+
 def project_detail_cifra(request):
     project = Project.objects.get(title = "CifraVirtual")
     context = {

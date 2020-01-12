@@ -1,0 +1,382 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>README.md</title><style></style></head><body id="preview">
+<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="CariocaScript_0"></a>CariocaScript</h1>
+<ul>
+<li class="has-line-data" data-line-start="2" data-line-end="3"><strong>Course:</strong> INF1022</li>
+<li class="has-line-data" data-line-start="3" data-line-end="4"><strong>Semester:</strong> 2019.2</li>
+<li class="has-line-data" data-line-start="4" data-line-end="5"><strong>Supervisor:</strong> Edward Hermann Haeusler</li>
+<li class="has-line-data" data-line-start="5" data-line-end="8"><strong>Group members:</strong>
+<ul>
+<li class="has-line-data" data-line-start="6" data-line-end="8"><em>Geraldo Luiz de Carvalho Pereira Junior</em></li>
+</ul>
+</li>
+</ul>
+<h2 class="code-line" data-line-start=8 data-line-end=9 ><a id="Sees_8"></a>Seções</h2>
+<ul>
+<li class="has-line-data" data-line-start="10" data-line-end="11"><a href="#getting-started">Aquecendo os tambores</a></li>
+<li class="has-line-data" data-line-start="11" data-line-end="12"><a href="#running-tests">Pisando fundo</a></li>
+<li class="has-line-data" data-line-start="12" data-line-end="14"><a href="#development">Queimando a mufa</a>
+<ul>
+<li class="has-line-data" data-line-start="13" data-line-end="14"><a href="#code-generation">Arrancando os cabelos</a></li>
+</ul>
+</li>
+<li class="has-line-data" data-line-start="14" data-line-end="16"><a href="#bibliography">Bibliografia</a></li>
+</ul>
+<h2 class="code-line" data-line-start=16 data-line-end=17 ><a id="Aquecendo_os_tambores__Instalando_os_prrequisitos_16"></a>Aquecendo os tambores - Instalando os pré-requisitos</h2>
+<p class="has-line-data" data-line-start="18" data-line-end="20">Para rodar o projeto é necessário ter os pacotes <em>Flex</em> e <em>Bison</em> instalados, o<br>
+que pode ser feito através da linha de comando no Ubuntu:</p>
+<pre><code class="has-line-data" data-line-start="22" data-line-end="25" class="language-bash">$ sudo apt install flex
+$ sudo apt install bison
+</code></pre>
+<p class="has-line-data" data-line-start="25" data-line-end="26">E no Fedora:</p>
+<pre><code class="has-line-data" data-line-start="28" data-line-end="31" class="language-bash">$ sudo yum install flex.x86_64
+$ sudo yum install bison.x86_64
+</code></pre>
+<h2 class="code-line" data-line-start=32 data-line-end=33 ><a id="Pisando_fundo__Rodando_seu_primeiro_programa_32"></a>Pisando fundo - Rodando seu primeiro programa</h2>
+<p class="has-line-data" data-line-start="34" data-line-end="35">Para rodar o programa é muito simples, é só rodar o programa “Coe” passando um arquivo com extensão “.cara” por argumento, como por exemplo:</p>
+<pre><code class="has-line-data" data-line-start="36" data-line-end="38" class="language-bash">$ ./Coe tests/t3-nested_operations.cara
+</code></pre>
+<p class="has-line-data" data-line-start="38" data-line-end="39">Vemos abaixo o programa <code>&quot;t3-nested_operations.cara&quot;</code>:</p>
+<pre><code class="has-line-data" data-line-start="40" data-line-end="62">-----------------------------
+CHEGAMAIS X,Y,Z NAMORAL
+
+SEPA X TA_LGD
+  MARCA Y RAPIDAO
+    SEPA X TA_LGD
+      X-- 
+    VALEU
+    Z++ 
+  VALEU
+SENAO
+    X++ 
+VALEU
+
+
+FALATU(X)
+FALATU(Y)
+FALATU(Z)
+
+VALEU
+------------------------------
+</code></pre>
+<p class="has-line-data" data-line-start="62" data-line-end="63">A execução do programa com o input de X,Y e Z declarado como 1,2 e 3, devolve o seguinte output:</p>
+<pre><code class="has-line-data" data-line-start="64" data-line-end="72">CariocaScript 1.0 Copyright (C) 2019 PUC-Rio
+Falai meu consagrado, que que você manda?
+Meu Brother: 1 2 3
+
+Meu Parcerasso:0
+Meu Parcerasso:2
+Meu Parcerasso:5 
+</code></pre>
+<p class="has-line-data" data-line-start="72" data-line-end="75">Verificamos o output do programa com a string “Meu Parcerasso”. Resultante do comando<br>
+<code>FALATU(id)</code>(equivalente do print), que imprime respectivamente, o valor<br>
+de X,Y e Z que passamos como entrada.</p>
+<h2 class="code-line" data-line-start=76 data-line-end=77 ><a id="Queimando_a_mufa__Modificando_a_gramtica_76"></a>Queimando a mufa - Modificando a gramática</h2>
+<h3 class="code-line" data-line-start=78 data-line-end=79 ><a id="Concertando_conflitos_ShiftReduce_78"></a>Concertando conflitos Shift-Reduce</h3>
+<p class="has-line-data" data-line-start="79" data-line-end="81">Aqui eu relato as mudanças que fiz sobre a Provol-One, linguagem proposta no<br>
+cabeçalho do trabalho:</p>
+<pre><code class="has-line-data" data-line-start="82" data-line-end="90">program -&gt; ENTRADA varlist SAIDA varlist cmds FIM
+varlist -&gt; id varlist | id
+cmds -&gt; cmd cmds | cmd
+cmd -&gt; FACA id VEZES cmds FIM
+cmd -&gt; ENQUANTO id FACA cmds FIM
+cmd -&gt; SE id ENTAO cmds SENAO cmds | SE id ENTAO cmds
+cmd -&gt; id = id | INC(id) | ZERA(id)
+</code></pre>
+<p class="has-line-data" data-line-start="91" data-line-end="93">Tendo uma gramática ambígua, duas mudanças formais precisaram ser feitas<br>
+na ProvolOne para evitar conflitos de Shift/Reduce:</p>
+<ol>
+<li class="has-line-data" data-line-start="94" data-line-end="96">Inverter a ordem da chamada de si mesmo em comandos recursivos como <code>cmds</code> e<br>
+<code>var_list</code> da seguinte forma:</li>
+</ol>
+<pre><code class="has-line-data" data-line-start="97" data-line-end="103">cmds: cmd cmds (Antes)
+cmds: cmds cmd (Depois)
+
+var_list: var_dev var_list (Antes)
+var_list: var_list var_def (Depois)
+</code></pre>
+<p class="has-line-data" data-line-start="103" data-line-end="106">Isso é necessário pois no caso da recursão a direita, todos os elementos<br>
+precisam ser colocados na pilha antes da regra poder ser aplicada e os<br>
+elementos poderem ser reduzidos.&lt;sup&gt;(1)&lt;/sup&gt;</p>
+<ol start="2">
+<li class="has-line-data" data-line-start="107" data-line-end="111">Distinguir o comando <code>SE var_ref ENTAO cmds</code> de<br>
+<code>SE var_ref ENTAO cmds SENAO cmds</code>, para acabar com a<br>
+ambiguidade entre eles. O que pode ser feito terminando cada expressão com o token <code>FIM</code>.</li>
+</ol>
+<p class="has-line-data" data-line-start="111" data-line-end="114">Após as alterações iniciais que tornaram a linguagem funcional,<br>
+a gramática passou por outra transformação para se tornar a<br>
+CariocaScript:</p>
+<pre><code class="has-line-data" data-line-start="115" data-line-end="128">program -&gt; CHEGAMAIS input NAMORAL cmds VALEU
+input -&gt; var_list
+var_list -&gt; var_list var_def
+var_def -&gt; id
+var_ref -&gt; id
+cmds -&gt; cmds cmd | cmd
+cmd -&gt; MARCA var_ref RAPIDAO cmds VALEU
+cmd -&gt; ENQUANTO var_ref FACA cmds VALEU
+cmd -&gt; SEPA var_ref TA_LGD cmds SENAO cmds | SE var_ref VALEU cmds
+cmd -&gt; var_ref = var_ref | var_ref++ | id-- | RELAXOU(var_ref) |
+FALATU(var_ref) | var_ref += var_ref 
+| var_ref -= var_ref
+</code></pre>
+<p class="has-line-data" data-line-start="130" data-line-end="131">Sendo uma linguagem informal, cabe esclarecer algumas keywords:</p>
+<ol>
+<li class="has-line-data" data-line-start="132" data-line-end="133">
+<p class="has-line-data" data-line-start="132" data-line-end="133"><code>ENTRADA</code> é substituída pelo <code>CHEGAMAIS</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="133" data-line-end="137">
+<p class="has-line-data" data-line-start="133" data-line-end="136"><code>SAIDA</code> é substituída pelo <code>FALATU(id)</code>, que exerce a função de printar o valor da<br>
+variável, de tal forma que o programador possa escolher as saidas<br>
+do programa de maneira mais flexível.</p>
+</li>
+<li class="has-line-data" data-line-start="137" data-line-end="138">
+<p class="has-line-data" data-line-start="137" data-line-end="138"><code>FACA id VEZES cmds FIM</code> é substituído pelo <code>MARCA id RAPIDAO cmds VALEU</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="138" data-line-end="140">
+<p class="has-line-data" data-line-start="138" data-line-end="140"><code>SE id ENTAO cmds VALEU</code> é substituído pelo <code>SEPA id TA_LGD cmds VALEU</code>, onde lê-se <code>TA_LGD</code> como “tá ligado?”.</p>
+</li>
+<li class="has-line-data" data-line-start="140" data-line-end="142">
+<p class="has-line-data" data-line-start="140" data-line-end="141"><code>ZERA(id)</code> é substituído pelo operador <code>RELAXOU(id)</code>.</p>
+</li>
+<li class="has-line-data" data-line-start="142" data-line-end="144">
+<p class="has-line-data" data-line-start="142" data-line-end="144">E por <code>FIM</code>, há o operador <code>VALEU</code> que encerra todos os comandos não terminais para evitar<br>
+ambiguidade.</p>
+</li>
+</ol>
+<h3 class="code-line" data-line-start=147 data-line-end=148 ><a id="Arrancando_os_cabelos__Gerao_de_Cdigo_147"></a>Arrancando os cabelos - Geração de Código</h3>
+<p class="has-line-data" data-line-start="148" data-line-end="149">Vemos abaixo o pseudo-código gerado pela Provol-One:</p>
+<pre><code class="has-line-data" data-line-start="150" data-line-end="158">q0 COPIA(3,2) q1
+q1 COPIA(4,1) q2
+q2 ZERA(5) q3
+q3 INC(3) q4
+q4 INC(5) q5
+q4 IF(5,4) q6,q3
+q6 FIM
+</code></pre>
+<p class="has-line-data" data-line-start="158" data-line-end="160">Sendo muito próximo ao assembly, a CariocaScript fez esse pulo e se<br>
+tornou executável. Ao rodar o programa <code>Coe</code>:</p>
+<ol>
+<li class="has-line-data" data-line-start="162" data-line-end="165">
+<p class="has-line-data" data-line-start="162" data-line-end="164">Recompila-se o projeto através do arquivo <code>Makefile</code> e<br>
+gera-se o executável.</p>
+</li>
+<li class="has-line-data" data-line-start="165" data-line-end="169">
+<p class="has-line-data" data-line-start="165" data-line-end="168">Encaminha-se o arquivo &quot;<code>.cara</code>&quot; passado por argumento para o<br>
+arquivo binário <code>bin/CariocaScript</code>, que por sua vez gera o<br>
+arquivo assembly.</p>
+</li>
+<li class="has-line-data" data-line-start="169" data-line-end="173">
+<p class="has-line-data" data-line-start="169" data-line-end="173">Compila-se o arquivo assembly junto de uma main no diretório<br>
+<code>/program</code> que é encarregada de chamar a função CariocaScript,<br>
+que consiste em nosso programa &quot;<code>.cara</code>&quot; e por isso não retorna<br>
+nem recebe nenhum valor.</p>
+</li>
+</ol>
+<h4 class="code-line" data-line-start=175 data-line-end=176 ><a id="Contagem_de_Labels_e_controle_de_fluxo_175"></a>Contagem de Labels e controle de fluxo</h4>
+<p class="has-line-data" data-line-start="176" data-line-end="180">A geração de código da CariocaScript se dá em puro assembly. A maior<br>
+dificuldade encontrada em montar um bloco de código em assembly é na tradução das<br>
+instruções de controle de fluxo de execução. O sistema é na bem simples na<br>
+no caso da tradução do <code>SEPA</code> por exemplo:</p>
+<pre><code class="has-line-data" data-line-start="181" data-line-end="186">cmpl $0,-8(%rbp)
+je L1
+addl $1,-8(%rbp) //Instrução caso verdadeiro
+L1:
+</code></pre>
+<p class="has-line-data" data-line-start="186" data-line-end="191">Em seguida incrementa-se em um o contador de labels. Se isso for feito a cada<br>
+leitura de um <code>cmd</code>, e se na construção de um bloco de código, também for printado o valor<br>
+da label vigente incrementando mais um, tudo parece funcionar. Me refiro ao<br>
+caso do <code>SEPA id TA_LGD cmds SENAO cmds VALEU</code>, onde é necessário ao menos<br>
+duas labels:</p>
+<pre><code class="has-line-data" data-line-start="193" data-line-end="205">sprintf(s_if,  &quot;         cmpl $0,-%d(%rbp) \n\t &quot;
+               &quot;         je L%d\n&quot;,getRbpOffset($2),label);
+
+-----------Caso primeira condição verdadeira----------------
+   
+sprintf(s_else,&quot;      \t jmp L%d\n&quot;
+               &quot;     L%d:\n&quot;,label+1,label);
+
+----------------------------Else----------------------------
+   
+sprintf(s_exit,&quot;     L%d:\n&quot;,label+1);
+</code></pre>
+<h4 class="code-line" data-line-start=206 data-line-end=207 ><a id="Administrao_de_variveis_206"></a>Administração de variáveis</h4>
+<p class="has-line-data" data-line-start="207" data-line-end="213">Outra curiosidade é a administração de variáveis, que se dá através de alocação<br>
+na pilha através de um cálculo simples. Todas as operações são feitas<br>
+referenciando a pilha, usando um registrador callee-saved quando<br>
+necessário, para contornar operações que são ilegais para dois endereços<br>
+simultâneos, como <code>movl -8(%rbp), -16(%rbp)</code>(corresponderia a instrução<br>
+<code>id = id</code>):</p>
+<pre><code class="has-line-data" data-line-start="214" data-line-end="217">movl -8(%rbp), %r12d
+movl %r12d, -16(%rbp)
+</code></pre>
+<p class="has-line-data" data-line-start="217" data-line-end="220">Em suma, usa-se o %r12d para intermediar operações aritméticas com variáveis do<br>
+usuário, e o %r13d para intermediar operações aritméticas com contadores criados pela linguagem,<br>
+como no caso do comando <code>MARCA id RAPIDAO cmds VALEU</code>:</p>
+<pre><code class="has-line-data" data-line-start="221" data-line-end="228">movl $0,%r13d              //i==0
+L1:
+   addl $1,%r13d           //i++
+   addl $1, -16(%rbp)      //Y++
+   cmpl %r13d,-8(%rbp)     //X==Y
+   jne L1
+</code></pre>
+<p class="has-line-data" data-line-start="228" data-line-end="229">Caso contrário, se utilizássemos o mesmo registrador para ambos o casos, uma atribuição dentro de um comando <code>MARCA id RAPIDAO</code>, iria sobreescrever o contador de iterações. Por outro lado, se o contador fosse armazenado na pilha, a comparação poderia ser realizada pelo %r12d. Por hora, não há necessidade de economizar registradores, e o código gerado fica mais enxuto.</p>
+<h3 class="code-line" data-line-start=230 data-line-end=231 ><a id="Exemplo_de_gerao_de_cdigo_230"></a>Exemplo de geração de código</h3>
+<h4 class="code-line" data-line-start=231 data-line-end=232 ><a id="Teste_t3nested_operationscara_231"></a>Teste t3-nested_operations.cara</h4>
+<p class="has-line-data" data-line-start="232" data-line-end="233">Para o programa mencionado na seção <code>Pisando Fundo</code>, temos o seguinte código assembly:</p>
+<pre><code class="has-line-data" data-line-start="234" data-line-end="321" class="language-assembly">.globl  cariocaScript
+ Si:  .string &quot;Meu Brother: &quot;
+
+ Sii:  .string &quot;%d&quot;
+
+ Nl:  .string &quot;\n&quot;
+
+ Sf:  .string &quot;Meu Parcerasso:%d\n&quot;
+
+ cariocaScript:
+   pushq %rbp
+   movq %rsp,%rbp
+   subq $32, %rsp
+
+   movq $Si, %rdi
+   call printf
+   movq $Sii, %rdi
+   leaq -8(%rbp), %rsi
+   call scanf
+
+   movq $Sii, %rdi
+   leaq -16(%rbp), %rsi
+   call scanf
+
+   bovq $Sii, %rdi
+   leaq -24(%rbp), %rsi
+   call scanf
+
+  ddl $1, -8(%rbp)
+L1:
+   jmp L4
+L3:
+   addl $1, -16(%rbp)
+L4:
+     movl $0,%r13d
+L5:
+     addl $1,%r13d
+   addl $1, -24(%rbp)
+     cmpl %r13d,-8(%rbp)
+   jne L5
+
+L7:
+   cmpl $0, -24(%rbp)
+   je L8
+   cmpl $0,-8(%rbp)
+   je L6
+   addl $1, -8(%rbp)
+L6:
+   subl $1, -24(%rbp)
+   jmp L7
+L8:
+ movq $Nl, %rdi
+   call printf
+
+   cmpl $0,-8(%rbp)
+   je L4
+   movl $0,%r13d
+L2:
+   addl $1,%r13d
+   cmpl $0,-8(%rbp)
+   je L1
+   subl $1, -8(%rbp)
+L1:
+   addl $1, -24(%rbp)
+   cmpl %r13d,-16(%rbp)
+   jne L2
+
+   jmp L5
+L4:
+   addl $1, -8(%rbp)
+L5:
+   movq $Sf, %rdi
+   movl -8(%rbp), %esi
+   call printf
+
+   movq $Sf, %rdi
+   movl -16(%rbp), %esi
+   call printf
+
+   movq $Sf, %rdi
+   movl -24(%rbp), %esi
+   call printf
+
+   movq %rbp, %rsp
+   popq %rbp
+   ret
+</code></pre>
+<h4 class="code-line" data-line-start=321 data-line-end=322 ><a id="Teste_t2all_operationscara_321"></a>Teste t2-all_operations.cara</h4>
+<p class="has-line-data" data-line-start="322" data-line-end="323">A função desse teste é ser abrangente e usar todos os comandos.</p>
+<pre><code class="has-line-data" data-line-start="324" data-line-end="354">CHEGAMAIS X, Y, Z, A, B NAMORAL
+SEPA X TA_LGD
+  SEPA Y TA_LGD
+    X++
+  VALEU
+SENAO
+  Y++
+VALEU
+
+MARCA X RAPIDAO
+  Z++
+VALEU
+
+
+ENQUANTO Z FACA
+  SEPA X TA_LGD
+    X++
+  VALEU
+ Z--
+VALEU
+
+FALATU(X)
+FALATU(Y)
+FALATU(Z)
+FALATU(A)
+B++
+FALATU(B)
+
+VALEU
+</code></pre>
+<p class="has-line-data" data-line-start="354" data-line-end="356">Aqui foi encurtado o trecho em assembly, retirando a<br>
+parte dos prints, preparação e encerramento do bloco de código, que são iguais ao exemplo anterior. Foi preservado apenas a lógica do controle de fluxo:</p>
+<pre><code class="has-line-data" data-line-start="357" data-line-end="385">   cmpl $0,-8(%rbp)
+   je L3
+   cmpl $0,-16(%rbp)
+   je L1
+   addl $1, -8(%rbp)
+L1:
+   jmp L4
+L3:
+   addl $1, -16(%rbp)
+L4:
+   movl $0,%r13d
+L5:
+   addl $1,%r13d
+   addl $1, -24(%rbp)
+   cmpl %r13d,-8(%rbp)
+   jne L5
+
+L7:
+   cmpl $0, -24(%rbp)
+   je L8
+   cmpl $0,-8(%rbp)
+   je L6
+   addl $1, -8(%rbp)
+L6:
+   subl $1, -24(%rbp)
+   jmp L7
+L8:
+</code></pre>
+<h2 class="code-line" data-line-start=385 data-line-end=386 ><a id="_385"></a></h2>
+<p class="has-line-data" data-line-start="386" data-line-end="387">Mais exemplos se encontram na pasta <code>tests/</code>, e seus respectivos códigos em assembly na sub-pasta <code>tests/asm</code>.</p>
+<h1 class="code-line" data-line-start=389 data-line-end=390 ><a id="Bibliografia_389"></a>Bibliografia</h1>
+<ol>
+<li class="has-line-data" data-line-start="391" data-line-end="392">[Recursive Rules] (<a href="https://www.gnu.org/software/bison/manual/html_node/Recursion.html">https://www.gnu.org/software/bison/manual/html_node/Recursion.html</a>)</li>
+<li class="has-line-data" data-line-start="392" data-line-end="393">Compiladores Princípios, Técnicas e Ferramentas - Alfred V. Aho, Ravi Sethi, Jeffrey D. Ullman</li>
+</ol>
+
+</body></html>
