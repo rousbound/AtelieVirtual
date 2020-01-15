@@ -16,8 +16,24 @@
         <h5>Link to github:</h5>
         <p><a href = {{project.link}}>{{ project.link }}</a></p>
     </div>
+  <style>#myRow{
+      margin: 3 auto;
+      margin-top: 30px;
+      border: 1px solid black;
+      }
+      #myRow2{
+      margin: 3 auto;
+      }
+
+  </style>
+      
+  <div id="myRow2" class = "row">
+  <h3>ScreenShot:</h3>
+  </div>
+  <div id="MyRow" class = "row">
     {% block showoff %}
       {% include "escolaShowOff.html" %}
     {% endblock %}
+  </div>
 </div>
 {% endblock %}
