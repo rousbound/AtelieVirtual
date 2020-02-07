@@ -52,7 +52,7 @@ def project_detail_bus(request):
     return render(request, 'project_detail_bus.html', context)
 
 def project_detail_snake(request):
-    project = Project.objects.get(title = 'Eden')
+    project = Project.objects.get(title = 'Darwin')
     context = {
         'project': project
     }

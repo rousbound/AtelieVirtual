@@ -17,14 +17,13 @@
         <h5>Link to github:</h5>
         <p><a href = {{project.link}}>{{ project.link }}</a></p>
     </div>
-    <style>#myRow{margin: 0 auto; border: 1px solid black; padding:3px;}</style>
-    <div id="snakeBox">
-      <script type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.min.js"></script>
-
-      <script type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/addons/p5.sound.min.js"></script>
-      <script type="text/javascript" src="{% static "snake.js" %}"></script>
-      <script type="text/javascript" src="{% static "sketch.js" %}"></script>
+    <style> #myRow{margin:3 auto;} </style>
+    <div id="myRow" class = "row">
+      <h1> Snake and FlappyBird</h1>
+    </div>
+    <div>
+      <img src = "{% static "img/snake.gif" %}">
+      <img src = "{% static "img/bird.gif" %}"  width=600px, height="100%" >
+    <div>
   </div>
 {% endblock %}
