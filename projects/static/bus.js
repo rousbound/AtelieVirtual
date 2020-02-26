@@ -1,6 +1,8 @@
 
     var mymap = L.map('mapid').setView([-22.94, -43.18], 13);
 
+   setTimeout( function(){ mymap.invalidateSize(true); }, 100);
+
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' }).addTo(mymap);
 
 
@@ -12,6 +14,8 @@ function clicked(){
   var input_value = document.getElementById('data').value;
   for(i=0; i < busData.length; i++){
 
+
+
     LINHA = busData[i][0] 
     LATITUDE = busData[i][1] 
     LONGITUDE = busData[i][2] 
@@ -19,11 +23,13 @@ function clicked(){
     HORA = busData[i][3].split(' ')[1];
     VELOCIDADE = busData[i][4]
 
+    //console.log("Linha:",LINHA,"Latitude:",LATITUDE,"Longitude",LONGITUDE,"Data:",DATA,"Hora:",HORA,"Velocidade:",VELOCIDADE)
+
     var LINHA = parseInt(LINHA);
     if (LINHA === parseInt(input_value)){
         let lat  = parseFloat(LATITUDE);
         let lon  = parseFloat(LONGITUDE);
-        console.log(DATA,HORA,VELOCIDADE);
+        //console.log(DATA,HORA,VELOCIDADE);
         dataVel = `<h5>Linha: ${LINHA}</h5><h5>Data: ${DATA}</h5><h5>Hora: ${HORA}</h5><h5>Velocidade: ${VELOCIDADE}</h5>`
         L.marker([lat,lon]).bindPopup(dataVel).addTo(layerGroup);
     }

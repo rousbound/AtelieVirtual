@@ -43,7 +43,7 @@ def project_detail_bus(request):
     busList = []
     for line in data_file:
       busList.append(line.strip().split(","))
-    print(busList)
+    #print(busList)
     project = Project.objects.get(title = 'CataÔnibus')
     context = {
         'project': project,
