@@ -17,7 +17,17 @@
         <p><a href = {{project.link}}>{{ project.link }}</a></p>
     </div>
 
-    <div class="row">
+  <style> #MyRow{
+            width: 50%;
+            margin: 3 auto;
+  }
+  </style>
+  <div id="MyRow" class = "row">
+    {% block showoff %}
+      {% include "README.md.html" %}
+    {% endblock %}
+  </div>
+
 </div>
 
 
