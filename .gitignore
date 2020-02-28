@@ -3,4 +3,5 @@ venv/*
 projects/__pycache__/*
 personal_portfolio/__pycache__/*
 secretKey.py
+projects/static/LiveTracking/BusesPos.txt
 
