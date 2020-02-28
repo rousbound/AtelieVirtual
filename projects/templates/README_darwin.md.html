@@ -1,0 +1,36 @@
+<h1 id="darwin">Darwin</h1>
+<br>
+<h2 id="seções">Seções</h2>
+<ul>
+<li><a href="#getting-started">Aquecendo os tambores</a></li>
+<li><a href="#running-tests">Rodando um dna previamente treinado</a></li>
+<li><a href="#development">Treinando sua própria espécie</a></li>
+</ul>
+<h2 id="aquecendo-os-tambores---instalando-os-pré-requisitos">Aquecendo os tambores - Instalando os pré-requisitos</h2>
+<p>Para rodar o projeto é necessário instalar o pygame</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1">$ <span class="ex">pip</span> install pygame</a></code></pre></div>
+<h2 id="rodando-um-dna-previamente-treinado">Rodando um dna previamente treinado</h2>
+<p>Para rodar um exemplo já treinado é necessário rodar o seguinte comando, passando um arquivo <code>.npy</code> como argumento:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1">$ <span class="ex">python3</span> runSpecimen <span class="st">&#39;BestDNA/Gen test - 2020-01-23 - 17:47:12--61-201.0.npy&#39;</span></a></code></pre></div>
+<h2 id="treinando-sua-própria-espécie">Treinando sua própria espécie</h2>
+<p>A maneira canônica de usar o framework é a seguinte:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" data-line-number="1">  <span class="im">import</span> sys</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  sys.path.append(<span class="st">&quot;../Nature&quot;</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="im">from</span> Darwin <span class="im">import</span> Evolution</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="im">from</span> yourGame <span class="im">import</span> <span class="op">*</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  evolve <span class="op">=</span> Evolution( </a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">    offspring_num <span class="op">=</span> <span class="dv">100</span>,</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">    generations <span class="op">=</span> <span class="dv">500</span>,</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">    sizes<span class="op">=</span>[<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">27</span>,<span class="dv">4</span>],</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    num_parents <span class="op">=</span> <span class="dv">12</span>,</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">    mutation_rate <span class="op">=</span> <span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">    crossing_algorithm <span class="op">=</span> <span class="st">&quot;uniform&quot;</span>,</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">    saving_txt <span class="op">=</span> <span class="va">True</span>, saving_csv <span class="op">=</span> <span class="va">True</span>, saving_dna <span class="op">=</span> <span class="va">True</span>,</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">    saveDnaThreshold <span class="op">=</span> <span class="va">None</span>,</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">    loadDnaPath <span class="op">=</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">    game <span class="op">=</span> yourGameClass,</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">    gameArgs <span class="op">=</span> yourGameArgsDict) </a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">  evolve.main()</a></code></pre></div>
+<p>Para usar o framework é necessário importar e passar como parâmetro para o objeto Evolution, o objeto do seu jogo. Sua classe deve ter uma função main que retorne um score e um fitness. De resto, os hiperparâmetros devem ser configurados a mão. Caso hajam parâmetros para serem passados para sua gameClass, eles devem ser passados e desempacotados em forma de dicionário. Ex: <code>gameArgs = {'drawingMode': False}</code></p>

@@ -17,14 +17,26 @@
         <p><a href = {{project.link}}>{{ project.link }}</a></p>
     </div>
 
+
   <style> #MyRow{
             width: 50%;
             margin: 3 auto;
+            padding: 24px;
+            border: 1px solid black;
+            text-align: left;
   }
+          div.a{
+            text-align: center;
+            margin-top: 50px;
+              }
   </style>
-  <div id="MyRow" class = "row">
+  <br>
+      <div class = "a">
+        <h1> Documentation </h1>
+      <div>
     {% block showoff %}
-      {% include "README.md.html" %}
+  <div id="MyRow" class = "row">
+      {% include "README_carioca.md.html" %}
     {% endblock %}
   </div>
 
