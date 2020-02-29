@@ -3,8 +3,6 @@ from projects.models import Project
 import os
 import sys
 module_dir = os.path.dirname(__file__)  
-sys.path.insert(0, module_dir + "/static/LiveTracking")
-import BusTrack
 
 def project_index(request):
     projects = Project.objects.all()
@@ -59,7 +57,6 @@ def get_busList(path):
 
 
 def project_detail_bus(request):
-    BusTrack.get_onibus(module_dir + "/static/LiveTracking/")
     file_path = os.path.join(module_dir, 'static/LiveTracking/BusesPos.txt')
 
     busList = get_busList(file_path)
