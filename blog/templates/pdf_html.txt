@@ -1,0 +1,3 @@
+
+    <!-- <iframe src="{% static "psyche.pdf" %}" width="250%" height="2000px">
+    </iframe> -->

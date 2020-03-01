@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd ~/AtelieVirtual/projects/static/LiveTracking/
+python3 LiveBusTracking.py

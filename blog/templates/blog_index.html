@@ -12,9 +12,16 @@
 
 
     <div class = "row" style = "border: 3px solid black; padding: 20px; margin-top: 10px;">
-    <h2 style = "text-align: center;"><a href="{% url 'blog_detail' post.pk%}">{{ post.title }}</a></h2>
-    {{ post.body }}
+    <h2 style = "text-align: center;"><a href="{% url 'blog_detail' post.pk%}" style="color: #000000">{{ post.title }}</a></h2>
+    {{ post.body | linebreaks}}
+      <div style = "margin: 0 auto;">
+        <a href="{% url 'blog_detail' post.pk %}"
+           class="btn btn-outline-dark">
+            Read More
+        </a>
+      </div>
     </div>
+
 
     {% endfor %}
 
