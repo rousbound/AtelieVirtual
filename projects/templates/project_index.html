@@ -21,8 +21,8 @@ h1 {
         <div class="card border-light mb-2">
             <img class="card-img-top" src="{% static project.image %}">
             <div class="card-body">
-                <h5 class="card-title">{{ project.title }}</h5>
-                <p class="card-text">{{ project.description }}</p>
+                <h5 class="card-title" style="font-family:Book Antigua">{{ project.title }}</h5>
+                <p class="card-text" style = "font-family:Book Antigua">{{ project.description }}</p>
                 <a href="{% url 'project_detail' project.title %}"
                    class="btn btn-outline-dark">
                     Read More

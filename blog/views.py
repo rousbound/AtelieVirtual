@@ -30,7 +30,8 @@ def get_images(images_name):
         print("Null image name")
         return
     image_list = []
-    for filename in os.listdir(module_dir + "/static/img"):
+    # The symlink fucks production
+    for filename in os.listdir(module_dir + "/static/img"): 
         if images_name in filename:
             image_list.append("img/" + filename)
     return sorted(image_list)
