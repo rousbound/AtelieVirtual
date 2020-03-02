@@ -1,6 +1,7 @@
 import json
 import requests
 import time
+import datetime
 
 def get_onibus():
   output = ""
@@ -30,5 +31,8 @@ while True:
       with open("BusesPos.txt", "w") as fileTxt:
         fileTxt.write(output)
       time.sleep(5)
+      print("Time: ",datetime.datetime.now())
+      print("Result : Successfully received request\n")
     except:
-        print("Error getting request")
+        print("Time: ", datetime.datetime.now())
+        print("Result: Error getting request\n")

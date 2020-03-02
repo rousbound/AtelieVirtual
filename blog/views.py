@@ -2,7 +2,9 @@ from django.shortcuts import render
 
 from blog.models import Post, Comment
 from .forms import CommentForm
+import os
 
+module_dir = os.path.dirname(__file__)  
 
 def blog_index(request):
 
@@ -23,6 +25,15 @@ def blog_category(request, category):
 
     return render(request, "blog_category.html", context)
 
+def get_images(images_name):
+    if images_name == None:
+        print("Null image name")
+        return
+    image_list = []
+    for filename in os.listdir(module_dir + "/static/img"):
+        if images_name in filename:
+            image_list.append("img/" + filename)
+    return sorted(image_list)
 
 def blog_detail(request, pk):
     post = Post.objects.get(pk=pk)
@@ -41,5 +52,6 @@ def blog_detail(request, pk):
         "post": post,
         "comments": comments,
         "form": form,
+        "images_paths": get_images(post.images_name),
     }
     return render(request, "blog_detail.html", context)

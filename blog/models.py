@@ -11,6 +11,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField('Category', related_name='posts')
+    images_name= models.CharField(max_length=255, null= True)
 
 class Comment(models.Model):
 

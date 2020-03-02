@@ -5,15 +5,9 @@
 
 <div class="row" style= "margin-top:-10px">
 
-    <img src="{% static "img/psyche_image-1.png" %}" width="150%" height = "150%" >
-    <img src="{% static "img/psyche_image-2.png" %}" width="150%" height = "150%">
-    <img src="{% static "img/psyche_image-3.png" %}" width="150%" height = "150%">
-    <img src="{% static "img/psyche_image-4.png" %}" width="150%" height = "150%">
-    <img src="{% static "img/psyche_image-5.png" %}" width="150%" height = "150%">
-    <img src="{% static "img/psyche_image-6.png" %}" width="150%" height = "150%">
-    <img src="{% static "img/psyche_image-7.png" %}" width="150%" height = "150%">
-    
-
+  {% for p in images_paths %}
+        <img src="{% static p %}"  width="150%" height = "150%" >
+  {% endfor %}
 
 
 </div>
