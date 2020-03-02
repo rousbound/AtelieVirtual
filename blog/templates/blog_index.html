@@ -2,9 +2,16 @@
 
 {% block page_content %}
 
+<style>
+#font1{
+  font-family:Times New Roman;
+  text-align: center;
+}
+</style>
+
 <div class="col-md-8 offset-md-2" >
 
-  <i><h1 style = "text-align:center; margin-top:10px; font-family: Book Antigua">Lectures</h1></i>
+  <i><h1 style = "margin-top:10px;" id=font1 >Lectures</h1></i>
 
     <hr>
 
@@ -16,7 +23,7 @@
       margin-top: 10px;">
 
     <div style = "margin: 0 auto;">
-    <h2 style = "text-align: center; font-family:Book Antigua">
+    <h2 id=font1>
       <a href="{% url 'blog_detail' post.pk%}" style="color: #000000">
         {{ post.title }}</a></h2></div>
 
