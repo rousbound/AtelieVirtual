@@ -11,40 +11,14 @@ def project_index(request):
     }
     return render(request, 'project_index.html', context)
 
-def project_detail(request, pk):
-    project = Project.objects.get(pk=pk)
+def project_detail(request, title):
+    project = Project.objects.get(title=title)
+    htmlpath = project.title + ".html"
     context = {
-        'project': project
+        'project': project,
+        'htmlpath' : htmlpath
     }
     return render(request, 'project_detail.html', context)
-
-def project_detail_escola(request):
-    project = Project.objects.get(title = "EscolaVirtual")
-    context = {
-        'project': project
-    }
-    return render(request, 'project_detail_escola.html', context)
-
-def project_detail_carioca(request):
-    project = Project.objects.get(title="CariocaScript")
-    context = {
-        'project': project
-    }
-    return render(request, 'project_detail_carioca.html', context)
-
-def project_detail_cifra(request):
-    project = Project.objects.get(title = "CifraVirtual")
-    context = {
-        'project': project
-    }
-    return render(request, 'project_detail_cifra.html', context)
-
-def project_detail_snake(request):
-    project = Project.objects.get(title = 'Darwin')
-    context = {
-        'project': project
-    }
-    return render(request, 'project_detail_snake.html', context)
 
 
 def get_busList(path):
