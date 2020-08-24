@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<style>
+#font1{
+  font-family:Times New Roman;
+  text-align: center;
+}
+</style>
+
+<div class="col-md-8 offset-md-2" >
+
+  <i><h1 style = "margin-top:10px;" id=font1 > Projetos de Lei em votação </h1></i>
+
+    <hr>
+
+    {% for PL in pls %}
+
+
+    <div class = "row" style = "border: 3px solid black;
+      padding: 20px;
+      margin-top: 10px;">
+
+    <div style = "margin: 0 auto;">
+    <h2 id=font1>
+      {% comment %}<a href="{% url 'blog_detail' post.pk%}" style="color: #000000">{% endcomment %}
+        Projeto de Lei {{ PL.project }}</a></h2></div>
+
+    {{ PL.ementa | linebreaks}}
+
+      <div style = "margin: 0 auto;">
+        <a href="{% url 'pl_detail' PL.pk %}"
+           class="btn btn-outline-dark">
+            Read More
+        </a>
+      </div>
+    </div>
+
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
