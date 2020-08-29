@@ -19,9 +19,14 @@ def createObjectsFromJson(path):
         json_data = json.load(fp)
         print(json_data)
         for pl in json_data:
-            print(type(pl))
-            plObject = PL()
-            plObject.jsonToClass(pl)
-            plObject.save()
+            if len(PL.objects.filter(project = pl['projeto'])):
+                plObject = PL.objects.filter(project = pl['projeto'])
+                plObject.update(sessiondate = pl['session_date'])
+                plObject.update(ementa = pl['ementa'])
+                plObject.save()
+            else:
+                plObject = PL()
+                plObject.jsonToClass(pl)
+                plObject.save()
 
 
