@@ -27,7 +27,11 @@
       {% comment %}<a href="{% url 'blog_detail' post.pk%}" style="color: #000000">{% endcomment %}
         Projeto de Lei {{ PL.project }}</a></h2></div>
 
-    {{ PL.ementa | linebreaks}}
+    <div>
+      <strong>Ementa:</strong> {{ PL.ementa }}<br>
+    <strong>Apresentação:</strong> {{ PL.localdata }}<br>
+    <strong>Última atualização:</strong> {{ PL.sessiondate }}
+    </div>
 
       <div style = "margin: 0 auto;">
         <a href="{% url 'pl_detail' PL.pk %}"
