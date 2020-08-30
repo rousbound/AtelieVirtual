@@ -55,7 +55,6 @@ def getSessionsDictUrls():
         match = re.search(sessionPattern, line)
         urlPrefix = "http://alerjln1.alerj.rj.gov.br"
         if match:
-            print("match:", match.group(2))
             date = match.group(2)
             date = date[3:5] + "/" + date[:2] + "/" + date[6:] # MDY to DMY
             sessionDict[date].append(urlPrefix + match.group(1))
@@ -135,13 +134,14 @@ def main(externalPipeline=None):
 
         print("############\n")
 
-    print(lawSummaries)
     session_dates = session_dates.replace("/","_")
+
 
     with open(f"tex/{session_dates}/meta/dump.json", "w") as fp:
         json.dump(lawSummaries, fp)
 
     if args.latex:
+        saveCwd = os.getcwd()
         os.chdir(f"tex/{session_dates}")
         pdfs = ""
         latexCompile = "pdflatex -interaction=nonstopmode -output-directory=meta"
@@ -153,11 +153,11 @@ def main(externalPipeline=None):
 
         os.chdir("meta")
         fullPdf = f"full_{session_dates}.pdf"
-        print(pdfs)
         print("Uniting Pdfs...")
 
         os.system(f"pdfunite {pdfs} {fullPdf}")
         os.system(f"mv {fullPdf} ../")
+        os.chdir(saveCwd)
     return session_dates
 
 

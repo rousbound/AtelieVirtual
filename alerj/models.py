@@ -16,19 +16,17 @@ class PL(models.Model):
         self.sessiondate = jsonDict['session_date']
 
 def createObjectsFromJson(path):
-    print(os.getcwd())
-    with open("dump.json", "r") as fp:
+    with open(path, "r") as fp:
         json_data = json.load(fp)
         print(json_data)
         for pl in json_data:
-            if len(PL.objects.filter(project = pl['projeto'])):
-                plObject = PL.objects.filter(project = pl['projeto'])
-                plObject.update(sessiondate = pl['session_date'])
-                plObject.update(ementa = pl['ementa'])
-            else:
-                plObject = PL()
+            plObject, created = PL.objects.get_or_create(project = pl['projeto'])
+            if created:
                 plObject.jsonToClass(pl)
                 plObject.save()
+            else:
+                plObject.update(sessiondate = pl['session_date'])
+                plObject.update(ementa = pl['ementa'])
 
 
 
