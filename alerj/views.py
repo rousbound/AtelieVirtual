@@ -6,7 +6,7 @@ module_dir = os.path.dirname(__file__)
 
 def alerj_index(request):
 
-    pls = PL.objects.all()
+    pls = PL.objects.all().order_by("sessiondate")
     context = {
         "pls": pls,
             }

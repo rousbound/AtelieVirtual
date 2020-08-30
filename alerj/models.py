@@ -1,5 +1,6 @@
 from django.db import models
 import json
+import os
 
 # Create your models here.
 class PL(models.Model):
@@ -15,7 +16,8 @@ class PL(models.Model):
         self.sessiondate = jsonDict['session_date']
 
 def createObjectsFromJson(path):
-    with open(path, "r") as fp:
+    print(os.getcwd())
+    with open("dump.json", "r") as fp:
         json_data = json.load(fp)
         print(json_data)
         for pl in json_data:
@@ -23,10 +25,11 @@ def createObjectsFromJson(path):
                 plObject = PL.objects.filter(project = pl['projeto'])
                 plObject.update(sessiondate = pl['session_date'])
                 plObject.update(ementa = pl['ementa'])
-                plObject.save()
             else:
                 plObject = PL()
                 plObject.jsonToClass(pl)
                 plObject.save()
+
+
 
 

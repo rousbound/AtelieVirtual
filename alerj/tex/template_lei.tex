@@ -1,0 +1,97 @@
+\documentclass[10pt]{article}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{venndiagram}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage[backend=biber,style=authoryear-ibid]{biblatex}
+\usepackage[normalem]{ulem}
+\usepackage[margin=0.8in]{geometry}
+\addbibresource{psychoanalysis.bib}
+\graphicspath{{Pictures/}}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+
+\date{}
+
+\newcommand{\quotebox}[3]{
+  \begin{center}
+\noindent\fbox{ 
+  \parbox{#3\textwidth}{%
+  {\itshape#1\itshape}
+
+  \raggedleft {\textbf{#2}} 
+    }%  
+}
+\end{center}
+}
+
+\newcommand{\spawnfig}[3]
+{
+  \begin{figure}[h]
+  \centering
+  \includegraphics[scale={#3}]{#1}
+  \caption{#2}
+  \end{figure}
+}
+
+
+\begin{document}
+\maketitle
+\begin{center}
+  %*AUTOR
+  \huge
+  \vspace{-3cm}\href{*URL}{PROJETO DE LEI Nº *PROJETO}
+\bigskip
+\bigskip
+\bigskip
+  
+\end{center}
+
+\textbf{EMENTA:} *EMENTA
+
+\bigskip
+
+\noindent
+A ASSEMBLEIA LEGISLATIVA DO ESTADO DO RIO DE JANEIRO RESOLVE:
+
+\begin{enumerate}[label=Art. \arabic*\textdegree]
+*CORPO
+\end{enumerate}
+
+
+
+
+\begin{center}
+  *LOCALDATA
+
+   \bigskip
+
+  \textbf{*NOME}
+
+  \bigskip
+
+  \textbf{JUSTIFICATIVA}
+  \bigskip
+
+\end{center}
+
+  *JUSTIFICATIVA
+
+\iffalse
+\begin{center}
+  \textbf{REFERÊNCIAS}
+\end{center}
+
+*REFERÊNCIAS
+\fi
+
+
+
+\end{document}
+
