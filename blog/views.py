@@ -38,21 +38,12 @@ def get_images(images_name):
 
 def blog_detail(request, pk):
     post = Post.objects.get(pk=pk)
-    form = CommentForm()
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = Comment(
-                author=form.cleaned_data["author"],
-                body=form.cleaned_data["body"],
-                post=post
-            )
-            comment.save()
-    comments = Comment.objects.filter(post=post)
     context = {
         "post": post,
-        "comments": comments,
-        "form": form,
         "images_paths": get_images(post.images_name),
     }
-    return render(request, "blog_detail.html", context)
+    print(post.title)
+    if post.title == "Poesia Completa":
+        return render(request, "book_detail.html", context)
+    else:
+        return render(request, "blog_detail.html", context)
