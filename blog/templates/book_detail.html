@@ -5,7 +5,7 @@
 <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-  <head>
+<head>
   <title>Using turn.js and the new zoom feature</title>
   <meta name="viewport" content="width = 1050, user-scalable = no" />
   <script type="text/javascript" src="{% static "/extras/jquery.min.1.7.js" %}" ></script>
@@ -490,9 +490,9 @@ function loadApp() {
 
 yepnope({
 	test : Modernizr.csstransforms,
-  yep: ['{% static "lib/turn.js" %}'],
-  nope: ['{% static "lib/turn.html4.min.js" %}'],
-  both: ['{% static "lib/zoom.min.js" %}', '{% static "js/magazine.js" %}', '{% static "css/magazine.css" %}'],
+  yep: ['{% static "/lib/turn.js" %}'],
+  nope: ['{% static "/lib/turn.html4.min.js" %}'],
+  both: ['{% static "/lib/zoom.min.js" %}', '{% static "/js/magazine.js" %}', '{% static "/css/magazine.css" %}'],
 	complete: loadApp
 });
 

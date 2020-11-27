@@ -1,4 +1,3 @@
-{% load static %}
 /*
  * Magazine sample
 */
@@ -49,7 +48,7 @@ function loadPage(page, pageElement) {
 
 	// Load the page
 
-	img.attr('src', "{% static 'pages/' %}" +  page + '.jpg');
+	img.attr('src', '/static/pages/'  +  page + '.jpg');
 
 	loadRegions(page, pageElement);
 
